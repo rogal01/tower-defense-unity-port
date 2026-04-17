@@ -1,42 +1,62 @@
-# Unity Port
+# Tower Defense Unity Port
 
-This folder contains a Unity rebuild of the tower-defense game as a code-first project.
-The UI, menu, world, and gameplay bootstrap at runtime, so you do not need to recreate scenes by hand.
+A code-first Unity rebuild of my tower-defense project, focused on runtime bootstrap, maintainable gameplay code, and engine-port experimentation.
+
+Instead of relying on a scene-heavy workflow, this version emphasizes code-driven setup for menus, gameplay bootstrap, and world initialization. That makes it a useful portfolio piece for showing how I approach Unity from a systems and architecture perspective rather than only from an editor workflow.
+
+## Why This Project Is Interesting
+
+- It ports the same game space into **Unity** while keeping a strong engineering focus.
+- It uses a **code-first** setup rather than depending entirely on manually assembled scenes.
+- It shows how I adapt the same product idea across different engines and frameworks.
 
 ## Included Variants
 
 - The repository root contains the main code-first Unity port.
-- `My project/` is a preserved editor-created Unity project snapshot kept for reference assets and alternate setup work.
+- `My project/` contains a preserved editor-created Unity project snapshot used for reference assets and alternate setup work.
 
-## What To Install
+## Technical Focus
 
-Install these from Unity's official tooling:
+- runtime-driven gameplay bootstrap
+- text-first, reviewable project structure
+- tower-defense systems adapted for Unity workflows
+- cleaner iteration for code generation and automated assistance
+
+## What the Port Covers
+
+- menu and game startup flow
+- map and gameplay bootstrap
+- tower placement and waves
+- powers, upgrades, and progression hooks
+- a stronger visual and structural foundation for future polish
+
+## Getting Started
+
+### Requirements
+
+Install these with Unity's official tools:
 
 1. Unity Hub
 2. Unity 6.3 LTS
-3. Visual Studio Editor support module
-4. Windows Build Support if you want Windows builds
+3. Visual Studio Editor support
+4. Windows Build Support if you want desktop builds
 5. Android Build Support if you want mobile export
 
-Official references:
+### Open the Project
 
-- Unity download: https://unity.com/download
-- Unity Hub install docs: https://docs.unity.com/hub/install-hub
-- Add an Editor in Unity Hub: https://docs.unity.com/hub/add-editor
-- Unity 6 release overview: https://unity.com/releases/release-overview
-
-## How To Open
-
-1. Install Unity Hub.
-2. Install Unity 6.3 LTS through the Hub.
-3. In Unity Hub, choose `Add` and point it at this `unity-port` folder.
-4. Open the project in Unity 6.3 LTS.
+1. Open Unity Hub.
+2. Install Unity 6.3 LTS.
+3. Add this repository folder as a project.
+4. Open it in Unity 6.3 LTS.
 5. Press Play.
 
-The project uses runtime bootstrap code, so any default scene will work.
+Because the project uses runtime bootstrap code, the setup is intentionally less scene-dependent than a typical Unity project.
 
-## Project Notes
+## Portfolio Value
 
-- The port is a polished gameplay foundation, not a byte-for-byte engine translation.
-- It keeps the same tower-defense structure: menu, map selection, campaign/endless feel, tower placement, waves, powers, upgrades, and a stronger visual presentation.
-- The Unity rebuild is intentionally text-first so Codex can iterate on it cleanly.
+This repo demonstrates:
+
+- Unity development beyond editor-only workflows
+- code-first project organization
+- engine adaptation of an existing game concept
+- willingness to explore different technical tradeoffs for the same product
