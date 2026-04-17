@@ -15,6 +15,14 @@ Instead of relying entirely on a scene-heavy workflow, this version emphasizes c
 - It proves I can port the same product space into a different engine without copying the same architecture blindly.
 - It translates well to Unity projects that need stronger code structure, clearer bootstrap flows, or easier long-term maintenance.
 
+## Quick Ecosystem Comparison
+
+| Repo | Primary Strength | Best Use Case |
+| --- | --- | --- |
+| Kotlin/Android | Cross-platform shared architecture | Native-feeling mobile game or app logic across platforms |
+| Godot | Fast iteration and UX polish | Prototypes, gameplay validation, onboarding, HUD work |
+| Unity | Code-first runtime structure | Larger engine-based products that need maintainable architecture |
+
 ## Why This Project Is Interesting
 
 - It ports the same game space into **Unity** while keeping a strong engineering focus.
@@ -70,6 +78,21 @@ Because the project uses runtime bootstrap code, the setup is intentionally less
 - runtime bootstrap instead of purely manual scene composition
 - architecture-minded porting of an existing game concept
 - adaptation of the same gameplay space to a different engine and toolchain
+
+## Best-Fit Client Work
+
+This repo is a strong fit for clients who need:
+
+- Unity gameplay systems that can keep growing without becoming scene spaghetti
+- a developer who is comfortable structuring startup and runtime logic in code
+- ports, rebuilds, or refactors of existing game concepts into Unity
+- a more maintainable engineering layer behind a Unity project
+
+## What I Would Improve Next
+
+- add visual proof near the top showing the runtime result, not just the architecture story
+- clarify the long-term role of `My project/` so the repo feels cleaner to first-time visitors
+- add a short architecture callout showing how bootstrap and gameplay systems are separated
 
 ## Part Of The Multi-Engine Ecosystem
 
