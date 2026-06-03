@@ -1,6 +1,6 @@
 # Tower Defense Unity Port
 
-**The TD Ecosystem:** [📱 Kotlin/Android (Flagship)](https://github.com/rogal01/tower-defense-android) | [🎮 Godot (Fast Iteration)](https://github.com/rogal01/tower-defense-godot) | [⚙️ Unity (Code-First)](https://github.com/rogal01/tower-defense-unity-port)
+**The TD Ecosystem:** [Kotlin/Android (Flagship)](https://github.com/rogal01/tower-defense-android) | [Godot (Fast Iteration)](https://github.com/rogal01/tower-defense-godot) | [Unity (Code-First)](https://github.com/rogal01/tower-defense-unity-port)
 
 A code-first Unity rebuild of my tower-defense project, focused on runtime bootstrap, maintainable gameplay code, and engine-port experimentation.
 
