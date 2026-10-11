@@ -10,8 +10,7 @@ namespace TowerDefensePort
         Cannon,
         Poison,
         Tesla,
-        Ice,
-        Flame
+        Ice
     }
 
     public enum PowerType
@@ -28,8 +27,7 @@ namespace TowerDefensePort
         Valley,
         Crossroads,
         Desert,
-        Snow,
-        Volcano
+        Snow
     }
 
     public enum GameMode
@@ -136,6 +134,10 @@ namespace TowerDefensePort
         public List<PowerType> AllowedPowers = new();
     }
 
+    /// <summary>
+    /// Static registry for canonical game data. 
+    /// Matches the Kotlin reference implementation 1:1 to ensure cross-platform parity.
+    /// </summary>
     public static class TDData
     {
         public static readonly Dictionary<TowerType, TowerDefinition> Towers = new()
@@ -223,20 +225,6 @@ namespace TowerDefensePort
                 Body = new Color(0.18f, 0.28f, 0.38f),
                 Accent = new Color(0.66f, 0.92f, 1.0f),
                 Description = "Slows enemies and stabilizes heavy lanes."
-            },
-            [TowerType.Flame] = new TowerDefinition
-            {
-                Type = TowerType.Flame,
-                Name = "Flame",
-                Cost = 90,
-                Damage = 10f,
-                Range = 2.35f,
-                FireRate = 0.9f,
-                ProjectileSpeed = 6.8f,
-                AbilityCooldown = 16f,
-                Body = new Color(0.30f, 0.16f, 0.10f),
-                Accent = new Color(1.0f, 0.62f, 0.18f),
-                Description = "Short-range burn pressure and wave control."
             }
         };
 
@@ -581,19 +569,6 @@ namespace TowerDefensePort
                 PathInner = new Color(0.70f, 0.74f, 0.80f),
                 Accent = new Color(0.70f, 0.92f, 1f),
                 DualLane = false
-            },
-            [MapType.Volcano] = new MapDefinition
-            {
-                Type = MapType.Volcano,
-                Name = "Volcano",
-                Label = "High-pressure endgame with hotter contrast.",
-                BackgroundTop = new Color(0.18f, 0.06f, 0.04f),
-                BackgroundBottom = new Color(0.06f, 0.02f, 0.02f),
-                Surface = new Color(0.16f, 0.08f, 0.06f),
-                PathOuter = new Color(0.28f, 0.10f, 0.06f),
-                PathInner = new Color(0.66f, 0.22f, 0.10f),
-                Accent = new Color(1f, 0.54f, 0.22f),
-                DualLane = true
             }
         };
 
@@ -685,7 +660,7 @@ namespace TowerDefensePort
                 GoldMultiplier = 1.20f,
                 UpgradesEnabled = true,
                 DiamondReward = 4,
-                Map = MapType.Volcano,
+                Map = MapType.Valley,
                 AllowedTowers = new List<TowerType> { TowerType.Arrow, TowerType.Magic, TowerType.Cannon },
                 AllowedPowers = new List<PowerType>()
             },
@@ -805,7 +780,7 @@ namespace TowerDefensePort
                 RewardMultiplier = 1.20f,
                 GoldMultiplier = 1.20f,
                 DiamondReward = 6,
-                Map = MapType.Volcano,
+                Map = MapType.Snow,
                 AllowedTowers = new List<TowerType>(Towers.Keys),
                 AllowedPowers = new List<PowerType>(Powers.Keys)
             },
@@ -908,7 +883,7 @@ namespace TowerDefensePort
                 RewardMultiplier = 1.30f,
                 GoldMultiplier = 1.30f,
                 DiamondReward = 8,
-                Map = MapType.Volcano,
+                Map = MapType.Crossroads,
                 AllowedTowers = new List<TowerType>(Towers.Keys),
                 AllowedPowers = new List<PowerType>(Powers.Keys)
             },
@@ -944,7 +919,7 @@ namespace TowerDefensePort
                 GoldMultiplier = 0.90f,
                 SpawnRateMultiplier = 1.20f,
                 DiamondReward = 10,
-                Map = MapType.Volcano,
+                Map = MapType.Snow,
                 AllowedTowers = new List<TowerType>(Towers.Keys),
                 AllowedPowers = new List<PowerType>(Powers.Keys)
             }

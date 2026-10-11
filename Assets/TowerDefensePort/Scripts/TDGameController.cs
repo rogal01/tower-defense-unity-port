@@ -51,20 +51,20 @@ namespace TowerDefensePort
         {
             new SkillNode("start_gold", "Golden Start", "+15 starting gold per level", 5, 3, 2, false),
             new SkillNode("base_hp", "Fortified Base", "+20 base HP per level", 5, 4, 3, false),
-            new SkillNode("player_damage", "Sharp Blade", "+3 player damage per level", 5, 5, 3, false),
-            new SkillNode("player_speed", "Swift Feet", "+20 move speed per level", 5, 3, 2, false),
-            new SkillNode("player_hp", "Tough Skin", "+15 player HP per level", 5, 4, 3, false),
+            new SkillNode("player_damage", "Sharp Blade", "+3 starting attack damage", 5, 5, 3, false),
+            new SkillNode("player_speed", "Swift Feet", "+20 starting move speed", 5, 3, 2, false),
+            new SkillNode("player_hp", "Tough Skin", "+15 starting player HP", 5, 4, 3, false),
             new SkillNode("tower_damage", "Tower Mastery", "+8% tower damage per level", 5, 6, 4, false),
             new SkillNode("gold_bonus", "Treasure Hunter", "+10% gold from kills per level", 5, 5, 3, false),
-            new SkillNode("diamond_luck", "Diamond Magnet", "+5% diamond chance per level", 3, 8, 6, false),
-            new SkillNode("wave_bonus", "War Veteran", "+3 wave bonus gold per level", 5, 4, 3, false),
-            new SkillNode("attack_range", "Eagle Eye", "+15 attack range per level", 4, 5, 4, false),
-            new SkillNode("ice_power", "Frost Mastery", "+10% ice slow per level", 5, 6, 4, true),
-            new SkillNode("ability_cd", "Quick Cast", "-5% tower ability cooldown per level", 5, 5, 3, true),
+            new SkillNode("diamond_luck", "Diamond Magnet", "+5% diamond drop chance per level", 3, 8, 6, false),
+            new SkillNode("wave_bonus", "War Veteran", "+3 gold per wave bonus", 5, 4, 3, false),
+            new SkillNode("attack_range", "Eagle Eye", "+15 starting attack range per level", 4, 5, 4, false),
+            new SkillNode("ice_power", "Frost Mastery", "+10% ice tower slow per level", 5, 6, 4, true),
+            new SkillNode("ability_cd", "Quick Cast", "-5% ability cooldown per level", 5, 5, 3, true),
             new SkillNode("sell_bonus", "Haggler", "+10% tower sell value per level", 5, 4, 2, true),
             new SkillNode("resist_pierce", "Armor Break", "+5% resistance pierce per level", 5, 7, 5, true),
-            new SkillNode("wave_modifier", "Lucky Waves", "Better wave modifier chance", 3, 8, 6, true),
-            new SkillNode("prestige_gold", "Midas Touch", "+5% gold from kills per level", 5, 5, 4, true)
+            new SkillNode("wave_modifier", "Lucky Waves", "Better wave modifier chances", 3, 8, 6, true),
+            new SkillNode("prestige_gold", "Midas Touch", "+5% gold per prestige level", 5, 5, 4, true)
         };
 
         private Camera _gameCamera = null!;
@@ -195,13 +195,39 @@ namespace TowerDefensePort
         private float _skillResistancePierce;
         private float _skillLuckyWaveBonus;
 
-        private void Awake()
+        private void Start()
         {
+            CheckSaveVersion();
             Application.targetFrameRate = 120;
             TDVisuals.EnsureEventSystem();
             EnsureCameraAndCanvas();
             BuildMenu();
         }
+
+        /// <summary>
+        /// Validates the current save data schema. If a legacy version is detected (pre-parity),
+        /// a migration is triggered to reset progress and align with the canonical 20-level spec.
+        /// </summary>
+        private void CheckSaveVersion()
+        {
+            var currentVersion = PlayerPrefs.GetInt("td_save_version", 1);
+            if (currentVersion < TDLegacyData.SCHEMA_VERSION)
+            {
+                // Perform a "Clean Slate" migration to purge non-canonical tower/map data artifacts.
+                // Reset progress due to content reduction
+                PlayerPrefs.DeleteKey("td_diamonds");
+                PlayerPrefs.DeleteKey("td_prestige_level");
+                foreach (var node in SkillNodes)
+                {
+                    PlayerPrefs.DeleteKey("td_skill_" + node.Id);
+                }
+                PlayerPrefs.SetInt("td_campaign_unlocked", 1);
+                // Reset achievements too if necessary, or just version them
+                PlayerPrefs.SetInt("td_save_version", TDLegacyData.SCHEMA_VERSION);
+                PlayerPrefs.Save();
+            }
+        }
+
 
         private void Update()
         {

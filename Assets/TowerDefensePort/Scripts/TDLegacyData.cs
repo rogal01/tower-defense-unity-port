@@ -76,8 +76,13 @@ namespace TowerDefensePort
         }
     }
 
+    /// <summary>
+    /// Centralized registry for legacy data definitions and schema versioning.
+    /// Handles the reconciliation between divergent port versions and the canonical master spec.
+    /// </summary>
     public static class TDLegacyData
     {
+        public const int SCHEMA_VERSION = 2;
         public static readonly Dictionary<TDBossType, TDBossDefinition> Bosses = new()
         {
             [TDBossType.OrcKing] = new TDBossDefinition
@@ -246,16 +251,16 @@ namespace TowerDefensePort
             new TDAchievementDefinition("rich", "Rich", "Have 500 gold at once"),
             new TDAchievementDefinition("rich_1000", "Millionaire", "Have 1000 gold at once"),
             new TDAchievementDefinition("gold_hoarder", "Gold Hoarder", "Have 2000 gold at once"),
-            new TDAchievementDefinition("diamond_10", "Diamond Hoarder", "Earn 10 diamonds in a run"),
-            new TDAchievementDefinition("diamond_50", "Diamond Mine", "Earn 50 diamonds in a run"),
             new TDAchievementDefinition("score_1000", "Score Chaser", "Reach 1000 score"),
+            new TDAchievementDefinition("diamond_10", "Diamond Hoarder", "Earn 10 diamonds in a run"),
+            new TDAchievementDefinition("diamond_50", "Diamond Mine", "Earn 50 diamonds in one run"),
             new TDAchievementDefinition("repaired_3", "Mechanic", "Repair the base 3 times in a run"),
             new TDAchievementDefinition("upgrade_all", "Well Rounded", "Buy all 4 player upgrades"),
             new TDAchievementDefinition("endless_10", "Endurance", "Reach wave 10 in endless mode"),
             new TDAchievementDefinition("kills_1000", "Genocide", "Kill 1000 enemies in one run"),
             new TDAchievementDefinition("wave_100", "Centurion", "Reach wave 100"),
-            new TDAchievementDefinition("no_damage", "Untouchable", "Complete a wave without base damage"),
-            new TDAchievementDefinition("speed_demon", "Speed Demon", "Reach wave 10 at 3x speed"),
+            new TDAchievementDefinition("no_damage", "Untouchable", "Complete a wave without base taking damage"),
+            new TDAchievementDefinition("speed_demon", "Speed Demon", "Beat wave 10 on 3x speed"),
             new TDAchievementDefinition("all_powers", "Elementalist", "Use all 4 powers in one run"),
             new TDAchievementDefinition("survivor_1hp", "Last Stand", "Win a wave with base at 1 HP"),
             new TDAchievementDefinition("campaign_5", "Campaigner", "Complete 5 campaign levels"),
